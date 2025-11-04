@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 // Instructions
 #define PUSH 1 // Push number on top of stack
@@ -33,13 +34,16 @@ int main(){
 		printf("ERR | Error opening file\n");
 		return 1;
 	}
-
-	int stack[256];			// Number holder
+	
+	int stack[256];
 	int stackPointer = 0;		// Stack pointer (top of stack)
 	int programCounter = 0;		// Program counter (which instruction)
 
-	fseek(file, 0, SEEK_END);
-	long fileSize = ftell(file);	
+	fseek(file, 0, SEEK_END);	// Put the file pointer at EOF (end of file)
+	long fileSize = ftell(file);	// Store the current cursor position using ftell
+	if (fileSize == -1L){
+		printf("ERR | ftell failed\n" );	
+	}
 
 	// Exec
 	while (1){
