@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 // Instructions
-#define PUSH 1 // Push number
+#define PUSH 1 // Push number on top of stack
 #define ADD 2 // Add
 #define PRINT 3 // pint?
 #define HALT 4 // Stop right there, criminal scum!
@@ -14,22 +14,45 @@
 
 int main(){
 
+	// TODO:
+	//
+	// Open file in binary read mode [DONE]
+	// Figure out how big the file is [DONE]
+	// Allocate memory to hold that many bytes []
+	// Read the file contents into that memory []
+	// Close the file []
+	// Use that memory as the program array (instead of hardcoded one) []
+	// Free the memory []
+
 	// Unsigned 8 bit int "program" that defines what instructions the VM uses
 	uint8_t program[] = {PUSH, 5, PUSH, 5, EQ, JZ, 10,
                      PUSH, 99, PRINT, HALT, PUSH, 0, PRINT, HALT};
+	// Open the "test.bin" file ine "rb" mode (read & binary)	
+	FILE *file = fopen("test.bin", "rb");
+	if (!file){
+		printf("ERR | Error opening file\n");
+		return 1;
+	}
 
 	int stack[256];			// Number holder
 	int stackPointer = 0;		// Stack pointer (top of stack)
 	int programCounter = 0;		// Program counter (which instruction)
-	
+
+	fseek(file, 0, SEEK_END);
+	long fileSize = ftell(file);	
+
 	// Exec
 	while (1){
 		uint8_t instruction = program[programCounter++];
 		
-		// The PUSH function 
+		// The PUSH function puts the next byte on top of the stack 
 		if (instruction == PUSH){
 			int value = program[programCounter++];
 			stack[stackPointer++] = value;
+
+			// stack[stackPointer++] = value is basically:
+			// stack[stackPointer] = value;
+			// stackPointer = stackPointer + 1;
 		}
 		// Adding numbers
 		else if (instruction == ADD){
@@ -77,6 +100,8 @@ int main(){
 			break;
 		}
 	}
+		
+	fclose(file);
 
 	return 0;
 }
