@@ -2,31 +2,11 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-// Instructions
-#define PUSH 1  // Push number on top of stack
-#define ADD 2   // Add
-#define PRINT 3 // pint?
-#define HALT 4  // Stop right there, criminal scum!
-#define SUB 5   // Subtract
-#define MUL 6   // Multiply
-#define DIV 7   // Divide
-#define EQ 8    // Check if equal
-#define JZ 9    // Jump if zero
+#include "opcodes.h"
 
 typedef uint8_t BYTE;
 
 int main() {
-
-    // TODO:
-    //
-    // Open file in binary read mode [DONE]
-    // Figure out how big the file is [DONE]
-    // Allocate memory to hold that many bytes [DONE?]
-    // Read the file contents into that memory [DONE?]
-    // Close the file [DONE]
-    // Use that memory as the program array (instead of hardcoded one) []
-    // Free the memory []
-
     // Open the "test.bin" file ine "rb" mode (read & binary)
     FILE *file = fopen("test.bin", "rb");
     if (!file) {
