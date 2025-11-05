@@ -15,12 +15,6 @@
 typedef uint8_t BYTE;
 
 int main() {
-	// TODO:
-	//
-	// Read a text file line by line
-	// Parse each line to identify the instruction (and any operands)
-	// Convert instruction names to their numeric opcodes
-	// Write the bytes to an output file
 	// Open two files, one for reading the instructions
 	// from a text file, and the other for writing to
 	// a binary file
@@ -45,15 +39,12 @@ int main() {
 	}
 	fseek(file, 0, SEEK_SET); // Set the file cursor to the beginning
 	
-	// Allocate the instructions
-	BYTE *instructions = malloc(fileSize);
-	if (!instrctions){
-		printf("ERR | malloc failed");
-		fclose(file);
-		return 3;
-	}
-	
- 		
+	char line[256]; // Buffer for one line of text	
+	char *res;
+
+	while (fgets(line, sizeof(line), file)){
+		res = strtok(line, " ");	
+	}			
 
 	fclose(file);
 	fclose(outFile);
