@@ -32,7 +32,14 @@ int main() {
 	char line[256]; // Buffer for one line of text	
 	char *res;
 
+	// TODO: Parse the text from the text file
 
+	// Go through each line of the text file
+	while (fgets(line, 256, file) != NULL){
+		if (sscanf(line, "%s %d\n") == 2){
+			printf("2\n");
+		}
+	}
 
 	fclose(file);
 	fclose(outFile);
