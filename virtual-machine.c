@@ -4,8 +4,6 @@
 
 #include "opcodes.h"
 
-typedef uint8_t BYTE;
-
 int main(int argc, const char *argv[]) {
     if (argc != 2){
         printf("SYNTAX ERR | Please specify a file using \"vm file\"\n");
@@ -32,13 +30,13 @@ int main(int argc, const char *argv[]) {
     }
     fseek(file, 0, SEEK_SET); // Put the file pointer back to the start
 
-    BYTE *program = malloc(fileSize);
+    uint8_t *program = malloc(sizeof(uint8_t) * fileSize);
     if (!program) {
         printf("ERR | malloc failed\n");
         fclose(file);
-        return 3; // Added error handling for malloc
+        return 3;
     }
-    fread(program, sizeof(BYTE), fileSize, file);
+    fread(program, sizeof(uint8_t), fileSize, file);
 
     // Exec
     while (1) {

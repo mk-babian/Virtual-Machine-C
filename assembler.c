@@ -78,10 +78,15 @@ int main() {
         }
         
         fwrite(&opcode, sizeof(uint8_t), 1, outFile);
-
+        
         if (hasOperand && operand != NULL){
-            uint8_t op = atoi(operand);
-            fwrite(&op, sizeof(uint8_t), 1, outFile);
+            int op = atoi(operand);
+            fwrite(&op, sizeof(int), 1, outFile);
+
+            // DEBUG
+            printf("%s %d\n", instruction, op);
+        }else{
+            printf("%s", instruction);
         }
     }   
 
