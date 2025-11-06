@@ -41,6 +41,8 @@ int main(int argc, const char *argv[]) {
     // Exec
     while (1) {
         uint8_t instruction = program[programCounter++];
+        // DEBUG
+        // printf("PC = %d, instruction = %d\n", programCounter - 1, instruction);
 
         // The PUSH function
         if (instruction == PUSH) {

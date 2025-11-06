@@ -30,7 +30,7 @@ int main() {
     fseek(file, 0, SEEK_SET); // Set the file cursor to the beginning
     
     char line[256]; // Buffer for one line of text  
-    const char *delimiters = " ";
+    const char *delimiters = " \n\t\r";
     
     char *instruction;
     char *operand;
@@ -80,8 +80,8 @@ int main() {
         fwrite(&opcode, sizeof(uint8_t), 1, outFile);
         
         if (hasOperand && operand != NULL){
-            int op = atoi(operand);
-            fwrite(&op, sizeof(int), 1, outFile);
+            uint8_t op = atoi(operand);
+            fwrite(&op, sizeof(uint8_t), 1, outFile);
 
             // DEBUG
             printf("%s %d\n", instruction, op);
