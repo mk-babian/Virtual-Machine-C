@@ -7,8 +7,8 @@
 typedef uint8_t BYTE;
 
 int main() {
-    // Open the "test.bin" file ine "rb" mode (read & binary)
-    FILE *file = fopen("test.bin", "rb");
+    // Open the "out.bin" file ine "rb" mode (read & binary)
+    FILE *file = fopen("out.bin", "rb");
     if (!file) {
         printf("ERR | Error opening file\n");
         return 1;
