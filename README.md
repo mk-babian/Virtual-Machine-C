@@ -206,13 +206,9 @@ This is an educational project. Feel free to fork and experiment with:
 - Enhanced error handling
 - Better assembler features (labels, macros, etc.)
 
-## License
-
-[Your chosen license - e.g., MIT]
-
 ## Author
 
-[Your name/GitHub username]
+Emir Saba Arslan
 
 ## Acknowledgments
 
